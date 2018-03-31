@@ -2,14 +2,14 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon.png-f8e2149ad96f31d1efeae2bd129cf5c9.stex"
+path="res://.import/icon.png-1b0e655c61874c72d6044237c1c4db73.stex"
 
 [deps]
 
-source_file="res://addons/FirstPersonRaycaster/icon.png"
+source_file="res://addons/FirstPersonRaycasterCSharp/icon.png"
 source_md5="96837f97a06b760926ea961d365b44d2"
 
-dest_files=[ "res://.import/icon.png-f8e2149ad96f31d1efeae2bd129cf5c9.stex" ]
+dest_files=[ "res://.import/icon.png-1b0e655c61874c72d6044237c1c4db73.stex" ]
 dest_md5="f81c4a1062a37009672f131c7de34b38"
 
 [params]
