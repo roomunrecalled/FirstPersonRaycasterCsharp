@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class raycaster : Node2D
+public class Raycaster : Node2D
 {
     // Immutable Members
     private const bool debug = true;
@@ -9,13 +9,15 @@ public class raycaster : Node2D
     "Required child nodes not found. Please make sure both a Sprite node" +
     " called 'Player' and a TileMap node called 'Level' are attached.";
 
-    // This can probably change on the fly, but I don't recommend it.
+    // These can probably change on the fly, but I don't recommend it.
     private Vector2 screenDimensions;
+    private const float worldCubeSize = 64;
+    private float tileGridSize;
 
     private bool childMessage;
     private bool ready;
 
-    private int[,] level;
+    private int[,] levelMatrix;
 
     private Vector2 playerPosition;
     private float playerRotation;
@@ -51,6 +53,18 @@ public class raycaster : Node2D
         if (!ready) return;
 
         // Call the actual draw function.
+        for (int y = 0; y < screenDimensions.y; y += 1)
+        {
+            drawColumn(y);
+        }
+    }
+
+    private void drawColumn(int y)
+    {
+        // determineProjectionAttributes()
+        // castRay()
+        // determineDistanceToWall()
+        // drawWallSlice()
     }
 
     private bool loadRequiredChildren()
@@ -74,6 +88,8 @@ public class raycaster : Node2D
         else
         {
             // Generate a matrix representation of the level.
+            tileGridSize = level.GetCellSize().x;
+            levelMatrix = createLevelFromTileMap(level);
 
             // Retrieve the player position & orientation.
             playerPosition = player.GetPosition();
@@ -87,7 +103,7 @@ public class raycaster : Node2D
         return result;
     }
 
-    private int[,] loadLevel(TileMap tilemap) 
+    private int[,] createLevelFromTileMap(TileMap tilemap) 
     {
         // Calculate tilemap dimensions
         Rect2 levelRect = tilemap.GetUsedRect();
@@ -109,16 +125,23 @@ public class raycaster : Node2D
         return level;
     }
 
+   private float tile2World(float lengthInPixels)
+    {
+        return (lengthInPixels/tileGridSize) * worldCubeSize;
+    }
+    private float world2Tile(float lengthInUnits)
+    {
+        return (lengthInUnits/worldCubeSize) * tileGridSize;
+    }
+
     private void testMethod()
     {
         //draw();
-        loadLevel((TileMap) GetNode("Level"));
+        createLevelFromTileMap((TileMap) GetNode("Level"));
     }
 
     private void drawTest() 
     {
         DrawRect(new Rect2(new Vector2(0,0), new Vector2(30,30)), new Color(0,244,0));
     }
-
-
 }
