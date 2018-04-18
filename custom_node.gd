@@ -5,7 +5,7 @@ func _enter_tree():
  add_custom_type(
    "FirstPersonRaycaster",
    "Node2D",
-   preload("res://addons/FirstPersonRaycasterCSharp/src/raycaster.cs"),
+   preload("res://addons/FirstPersonRaycasterCSharp/src/Raycaster.cs"),
    preload("res://addons/FirstPersonRaycasterCSharp/icon.png")
  )
  pass
